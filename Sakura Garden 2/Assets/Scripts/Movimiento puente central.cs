@@ -2,25 +2,22 @@ using UnityEngine;
 
 public class Movimientopuentecentral : MonoBehaviour
 {
-    public float velocidadRotacion = 10f; // Ajusta la velocidad de rotación según tus necesidades
-    private bool rotacionCompletada = false;
+    public float Velocidadrotacion = -10f; 
+    private bool Rotacioncompletada = false;
 
     private void Update()
     {
-        if (!rotacionCompletada)
+        if (!Rotacioncompletada)
         {
-            // Verifica si la tecla "P" fue presionada
             if (Input.GetKey(KeyCode.P))
             {
-                // Realiza la rotación cuando la tecla "P" es presionada
-                transform.Rotate(0f, velocidadRotacion * Time.deltaTime, 0f, Space.Self);
+                transform.Rotate(0f, Velocidadrotacion * Time.deltaTime, 0f, Space.World);
 
-                // Obtiene el ángulo actual en el eje Y (entre 0 y 360 grados)
                 float anguloActual = transform.rotation.eulerAngles.y;
 
-                if (anguloActual > 90f)
+                if (anguloActual <= -90f)
                 {
-                    rotacionCompletada = true;
+                    Rotacioncompletada = true;
                     Debug.Log("Rotación detenida al superar los 90 grados en el eje Y.");
                 }
             }
